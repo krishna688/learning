@@ -1,20 +1,8 @@
 package main
 
-import "log"
+type Rotated struct{}
 
-func main() {
-
-	log.Println("rotated sorted array")
-
-	nums := []int{4, 5, 6, 7, 0, 1, 2}
-	for i, v := range nums {
-		log.Printf("index %d -> %d", i, v)
-	}
-
-	log.Println(findTarget(nums, 2))
-}
-
-func findTarget(nums []int, target int) int {
+func (r Rotated) GetTargetIndex(nums []int, target int) int {
 	left := 0
 	right := len(nums) - 1
 
