@@ -22,7 +22,6 @@ func getObjNdInput(alg string) (Search, []int, int) {
 		return Rotated{}, []int{72, 81, 83, 89, 92, 5, 23, 33, 54, 65}, 23
 	case "linear":
 		return linear{}, []int{72, 81, 83, 89, 92, 5, 23, 33, 54, 65}, 23
-
 	case "linear-ordered":
 		return OrderedLinear{}, []int{5, 23, 33, 54, 65, 72, 81, 83, 89, 92}, 22
 	default:
