@@ -44,6 +44,7 @@ func main() {
 		wg.Add(1)
 		go getPrimenumbers(ch, &wg, i)
 	}
+	
 	go func() {
 		for i := start; i <= end; i++ {
 			ch <- i
