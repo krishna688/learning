@@ -3,9 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("working")
 
-	fmt.Println(anagrams("abcd"))
+	dataCh := make(chan int)
+
 }
 
 func anagrams(input string) []string {
