@@ -1,30 +1,37 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+func doSomething(i int) int {
+	time.Sleep(1 * time.Second)
+	return i
+}
 
 func main() {
 
 	dataCh := make(chan int)
 
-}
+	go func() {
 
-func anagrams(input string) []string {
-
-	if len(input) == 1 {
-		fmt.Println("base condition")
-		return []string{string(input[0])}
-	}
-	collections := []string{}
-
-	ans := anagrams(input[1:])
-
-	for _, an := range ans {
-		for i := 0; i <= len(an); i++ {
-			a := an[:i] + string(input[0]) + an[i:]
-
-			collections = append(collections, a)
+		wg := sync.WaitGroup{}
+		for i := 0; i < 1000; i++ {
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				dataCh <- doSomething(i)
+			}()
 		}
+
+		wg.Wait()
+		close(dataCh)
+	}()
+
+	for n := range dataCh {
+		fmt.Println(n)
 	}
 
-	return collections
 }

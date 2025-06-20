@@ -11,10 +11,16 @@ terraform {
   }
 }
 
-
-resource "local_file" "my_first_file" {
-  content  = var.file_content
-  filename = var.file_name
+provider "local" {
+  
 }
+
+resource "local_file" "test" {
+  filename = "test_${var.name}.txt"
+  content = var.input
+}
+
+
+
 
 
